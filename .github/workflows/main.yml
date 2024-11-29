@@ -6,7 +6,10 @@ on:
     branches: [ "main" ]
 jobs:
   build:
-      runs-on: windows-latest
+      runs-on: ${{ matrix.os }}
+      strategy:
+        matrix:
+          os: [ubuntu-latest, windows-latest, macos-latest]
       steps:
         - uses: actions/checkout@v1
         - name: set up JDK 22
@@ -16,7 +19,10 @@ jobs:
         - name: Maven Package
           run: mvn -B clean package -DskipTests
   test:
-      runs-on: windows-latest
+      runs-on: ${{ matrix.os }}
+      strategy:
+        matrix:
+          os: [ubuntu-latest, windows-latest, macos-latest]
       needs: build  
       steps:
         - name: Checkout code
@@ -28,4 +34,4 @@ jobs:
         - name: Maven Verify
           run: mvn -B clean verify
         - name: Run tests
-          run: mvn test
+          run: mvn -Dtest=BinarySearchTreeTest test
