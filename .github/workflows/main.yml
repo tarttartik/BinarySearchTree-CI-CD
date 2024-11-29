@@ -34,4 +34,4 @@ jobs:
         - name: Maven Verify
           run: mvn -B clean verify
         - name: Run tests
-          run: mvn -Dtest=BinarySearchTreeTest test
+          run: mvn -B test --file pom.xml
