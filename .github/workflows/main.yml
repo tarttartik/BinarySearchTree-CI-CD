@@ -28,4 +28,4 @@ jobs:
         - name: Maven Verify
           run: mvn -B clean verify
         - name: Run tests
-          run: mvn test -Dtest=BinarySearchTreeTest 
+          run: mvn test
